@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Crysti's Website</title>
+</head>
+
+<body>
+    <div id="header">
+
+        <div class="text">
+            <div class="header-text">
+                <h1>Hey! Crysti!!!!!</h1>
+            </div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#Music">Music</a>
+                <a href="#">Videos</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+        <div class="herotxt">
+            <h1>Welcome to website
+                <br> dedicated to you!
+            </h1>
+        </div>
+
+    </div>
+    <div id="Music">
+        <div id="playlist">
+            <h2>Playlist</h2>
+            <audio id="audio" controls>
+                Your browser does not support the audio element.
+            </audio>
+            <div id="audio-controls">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var playlistData = [];
+        var currentSongIndex = 0;
+        var audio = document.getElementById('audio');
+        var prevBtn = document.getElementById('prevBtn');
+        var nextBtn = document.getElementById('nextBtn');
+
+        // Function to generate playlist data
+        function generatePlaylistData(numSongs) {
+            for (var i = 1; i <= numSongs; i++) {
+                playlistData.push({ title: 'Song ' + i, source: i + '.mp3' });
+            }
+        }
+
+        // Function to play current song
+        function playCurrentSong() {
+            audio.src = playlistData[currentSongIndex].source;
+            audio.play();
+        }
+
+        // Event listener for previous button
+        prevBtn.addEventListener('click', function () {
+            if (currentSongIndex > 0) {
+                currentSongIndex--;
+                playCurrentSong();
+            }
+        });
+
+        // Event listener for next button
+        nextBtn.addEventListener('click', function () {
+            if (currentSongIndex < playlistData.length - 1) {
+                currentSongIndex++;
+                playCurrentSong();
+            }
+        });
+
+        // Generate playlist data
+        generatePlaylistData(20); // Change the number of songs here
+
+        // Play the first song when the page loads
+        playCurrentSong();
+
+    </script>
+</body>
+
+</html>
